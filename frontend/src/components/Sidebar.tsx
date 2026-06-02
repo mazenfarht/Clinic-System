@@ -37,7 +37,7 @@ export default function Sidebar() {
 
           <li>
             <Link
-              href="/dashboard/queue"
+              href="/queue"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
             >
               <Users size={20} />
