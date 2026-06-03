@@ -25,8 +25,8 @@ export default function Login() {
 
       // 👇 ده المهم للميدلوير
 
-      document.cookie = `clinic_token=${data.token}; path=/; max-age=86400; SameSite=Lax`;
-      window.location.href = "/dashboard";
+      document.cookie = `clinic_token=${data.token}; path=/; max-age=86400`;
+      router.replace("/dashboard");
     } catch (err) {
       notifyError("Invalid credentials. Please try again.");
     } finally {
