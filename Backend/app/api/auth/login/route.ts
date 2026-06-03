@@ -24,7 +24,11 @@ export async function POST(request: NextRequest) {
   }
 
   if (!validateCredentials(username, password)) {
-    return errorResponse("Invalid username or password.", 401, "INVALID_CREDENTIALS");
+    return errorResponse(
+      "Invalid username or password.",
+      401,
+      "INVALID_CREDENTIALS"
+    );
   }
 
   const token = await generateToken(username);

@@ -20,10 +20,13 @@ export default function Login() {
       setError("");
 
       const data = await login(userName, password);
-
       localStorage.setItem("clinic_token", data.token);
       notifySuccess("Logged in successfully 🎉");
-      router.push("/dashboard");
+
+      // 👇 ده المهم للميدلوير
+
+      document.cookie = `clinic_token=${data.token}; path=/; max-age=86400; SameSite=Lax`;
+      window.location.href = "/dashboard";
     } catch (err) {
       notifyError("Invalid credentials. Please try again.");
     } finally {
