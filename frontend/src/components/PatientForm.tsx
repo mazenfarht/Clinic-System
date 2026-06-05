@@ -4,23 +4,17 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
 import { bookPatient } from "../services/queue";
-import { api } from "../lib/axios";
 import { notifyError, notifySuccess } from "@/src/lib/notify";
+import { getSlots } from "../services/slot";
 
 export default function PatientForm() {
   const router = useRouter();
   const [slots, setSlots] = useState<string[]>([]);
 
   const fetchSlots = async (date: string) => {
-    try {
-      const res = await api.get(`/slots?date=${date}`);
-      setSlots(res?.data?.data?.availableSlots || []);
-    } catch (err) {
-      console.log("Slots error:", err);
-      setSlots([]);
-    }
+    const available = await getSlots(date);
+    setSlots(available);
   };
 
   const validationSchema = Yup.object({
