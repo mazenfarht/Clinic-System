@@ -1,9 +1,16 @@
 import { NextRequest } from "next/server";
-import { bookPatient } from "@/lib/queue";
+import { bookPatient, validateBookingInput } from "@/lib/queue";
 import { successResponse, errorResponse } from "@/lib/middleware";
 
 // ─── POST /api/book (public) ──────────────────────────────────────────────────
-// Allows any patient to book a queue number. No authentication required.
+// Allows any patient to book an appointment slot.
+// No authentication required.
+//
+// Request body:
+//   { name, phone, appointmentDate, appointmentTime }
+//
+// Success (201):
+//   { success: true, message: "Appointment booked successfully.", data: { patient } }
 
 export async function POST(request: NextRequest) {
   let body: unknown;
@@ -11,31 +18,28 @@ export async function POST(request: NextRequest) {
   try {
     body = await request.json();
   } catch {
-    return errorResponse("Invalid JSON body", 400, "INVALID_JSON");
+    return errorResponse("Invalid JSON body.", 400, "INVALID_JSON");
   }
 
-  const { name } = body as Record<string, unknown>;
+  const input = body as Record<string, unknown>;
 
-  if (typeof name !== "string" || name.trim().length === 0) {
-    return errorResponse(
-      "Field 'name' is required and must be a non-empty string.",
-      400,
-      "MISSING_NAME"
-    );
+  const validation = validateBookingInput({
+    name: input.name as string,
+    phone: input.phone as string,
+    appointmentDate: input.appointmentDate as string,
+    appointmentTime: input.appointmentTime as string,
+  });
+
+  if (!validation.valid) {
+    return errorResponse(validation.error, 400, validation.code);
   }
 
-  if (name.trim().length > 100) {
-    return errorResponse("Name must be 100 characters or fewer.", 400, "NAME_TOO_LONG");
-  }
+  const patient = bookPatient({
+    name: input.name as string,
+    phone: input.phone as string,
+    appointmentDate: input.appointmentDate as string,
+    appointmentTime: input.appointmentTime as string,
+  });
 
-  const patient = bookPatient(name);
-
-  return successResponse(
-    {
-      patient,
-      message: `Queue number ${patient.queueNumber} has been assigned to ${patient.name}.`,
-    },
-    "Booking successful",
-    201
-  );
+  return successResponse({ patient }, "Appointment booked successfully.", 201);
 }

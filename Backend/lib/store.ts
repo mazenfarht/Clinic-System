@@ -24,9 +24,13 @@ export const store = globalStore.__clinicQueueStore;
 
 // ─── Store Helpers ────────────────────────────────────────────────────────────
 
-/** Returns a snapshot of the current waiting list (status = "waiting"). */
+/** Returns only patients currently in "waiting" status. */
 export const getWaitingPatients = () =>
   store.patients.filter((p) => p.status === "waiting");
+
+/** Returns only patients currently in "scheduled" status. */
+export const getScheduledPatients = () =>
+  store.patients.filter((p) => p.status === "scheduled");
 
 /** Returns the full queue list sorted by queue number. */
 export const getSortedQueue = () =>

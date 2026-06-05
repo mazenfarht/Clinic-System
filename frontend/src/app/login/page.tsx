@@ -23,8 +23,7 @@ export default function Login() {
       localStorage.setItem("clinic_token", data.token);
       notifySuccess("Logged in successfully 🎉");
 
-      // 👇 ده المهم للميدلوير
-
+      // it's importent to middlewarw file
       document.cookie = `clinic_token=${data.token}; path=/; max-age=86400`;
       router.replace("/dashboard");
     } catch (err) {

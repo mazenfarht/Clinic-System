@@ -1,11 +1,18 @@
-// ─── Patient & Queue Types ───────────────────────────────────────────────────
+// ─── Patient & Queue Types ────────────────────────────────────────────────────
 
 export interface Patient {
   id: string;
   name: string;
+  phone: string;
+
+  appointmentDate: string; // ISO date string: "YYYY-MM-DD"
+  appointmentTime: string; // "HH:mm"
+
   queueNumber: number;
-  status: "waiting" | "current" | "done";
-  bookedAt: string; // ISO string
+
+  status: "scheduled" | "waiting" | "current" | "done";
+
+  bookedAt: string; // ISO datetime string
 }
 
 export interface QueueState {
@@ -13,6 +20,13 @@ export interface QueueState {
   currentPatient: Patient | null;
   nextQueueNumber: number;
   totalServedToday: number;
+}
+
+// ─── Slot Types ───────────────────────────────────────────────────────────────
+
+export interface SlotsResponse {
+  date: string;
+  availableSlots: string[];
 }
 
 // ─── Auth Types ───────────────────────────────────────────────────────────────
