@@ -10,12 +10,23 @@ export const getQueue = async () => {
   }
 };
 
-export const bookPatient = async (name: string) => {
-  const response = await api.post("/book", {
-    name,
-  });
+export const bookPatient = async (data: {
+  name: string;
+  phone: string;
+  appointmentDate: string;
+  appointmentTime: string;
+}) => {
+  try {
+    const res = await api.post("/book", data);
 
-  return response.data;
+    console.log("API RESPONSE:", res.data);
+
+    return res.data.data;
+  } catch (error: any) {
+    console.log("Booking Error:", error?.response?.data || error.message);
+
+    throw error;
+  }
 };
 
 export const nextPatient = async () => {
