@@ -1,31 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getQueue } from "../services/queue";
 
 export function useQueue() {
   const [queue, setQueue] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  const isFirstLoad = useRef(true);
+
   const fetchQueue = async () => {
     try {
-      setLoading(true);
+      if (isFirstLoad.current) setLoading(true);
+
       const data = await getQueue();
       setQueue(data);
     } catch (err) {
       console.log("Queue error:", err);
     } finally {
       setLoading(false);
+      isFirstLoad.current = false;
     }
   };
 
-  const handelWaiting = async () => {
-    const data = await getQueue();
-    if (data.status === "scheduled") {
-      return data.status === "waiting";
-    }
-  };
   useEffect(() => {
     fetchQueue();
+
+    // optional: auto refresh every 10 sec
+    const interval = setInterval(() => {
+      fetchQueue();
+    }, 10000);
+
+    return () => clearInterval(interval);
   }, []);
 
-  return { queue, loading, refetch: fetchQueue, handelWaiting };
+  return {
+    queue,
+    loading,
+    refetch: fetchQueue,
+  };
 }

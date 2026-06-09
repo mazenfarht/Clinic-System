@@ -1,7 +1,7 @@
 "use client";
 
 import { useQueue } from "@/src/hooks/useQueue";
-import { checkInPatient } from "@/src/services/patient";
+import { checkInPatient, donePatient } from "@/src/services/patient";
 
 export default function Queue() {
   const { queue, loading, refetch } = useQueue();
@@ -26,14 +26,14 @@ export default function Queue() {
           queue.scheduled?.map((patient: any) => (
             <div key={patient.id} className="p-2">
               #{patient.queueNumber} - {patient.name}
-              {/* <button
+              <button
                 onClick={async () => {
                   await checkInPatient(patient.id);
                   refetch();
                 }}
               >
                 Check In
-              </button> */}
+              </button>
             </div>
           ))
         )}
@@ -46,6 +46,14 @@ export default function Queue() {
             queue.waiting?.map((patient: any) => (
               <div key={patient.id} className="p-2">
                 #{patient.queueNumber} - {patient.name}
+                <button
+                  onClick={async () => {
+                    await donePatient();
+                    refetch();
+                  }}
+                >
+                  Check In
+                </button>
               </div>
             ))
           )}
