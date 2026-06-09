@@ -17,9 +17,15 @@ export function useQueue() {
     }
   };
 
+  const handelWaiting = async () => {
+    const data = await getQueue();
+    if (data.status === "scheduled") {
+      return data.status === "waiting";
+    }
+  };
   useEffect(() => {
     fetchQueue();
   }, []);
 
-  return { queue, loading, refetch: fetchQueue };
+  return { queue, loading, refetch: fetchQueue, handelWaiting };
 }

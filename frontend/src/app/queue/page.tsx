@@ -1,30 +1,14 @@
 "use client";
 
-import { getQueue } from "@/src/services/queue";
-import { useEffect, useState } from "react";
+import { useQueue } from "@/src/hooks/useQueue";
+import { checkInPatient } from "@/src/services/patient";
 
 export default function Queue() {
-  const [queue, setQueue] = useState<any>(null);
-  useEffect(() => {
-    console.log("COMPONENT MOUNTED");
+  const { queue, loading, refetch } = useQueue();
 
-    const fetchData = async () => {
-      try {
-        console.log("CALLING API...");
-        const data = await getQueue();
-        console.log("DATA FROM SERVICE:", data);
-
-        setQueue(data);
-      } catch (err) {
-        console.log("ERROR IN COMPONENT:", err);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (!queue) return <p>Loading...</p>;
-
+  if (loading) return <p>Loading...</p>;
+  if (!queue) return <p>No data</p>;
+  console.log(localStorage.getItem("clinic_token"));
   return (
     <>
       <h1>Queue Page</h1>
@@ -34,11 +18,51 @@ export default function Queue() {
       </h2>
 
       <div>
-        {queue.waiting?.map((patient: any) => (
-          <div key={patient.id}>
-            #{patient.queueNumber} - {patient.name}
-          </div>
-        ))}
+        <h1>Scheduled</h1>
+
+        {queue.scheduled.length === 0 ? (
+          <p>No scheduled patients</p>
+        ) : (
+          queue.scheduled?.map((patient: any) => (
+            <div key={patient.id} className="p-2">
+              #{patient.queueNumber} - {patient.name}
+              {/* <button
+                onClick={async () => {
+                  await checkInPatient(patient.id);
+                  refetch();
+                }}
+              >
+                Check In
+              </button> */}
+            </div>
+          ))
+        )}
+        <div>
+          <h1>Waiting</h1>
+
+          {queue.waiting.length === 0 ? (
+            <p>No waiting patients</p>
+          ) : (
+            queue.waiting?.map((patient: any) => (
+              <div key={patient.id} className="p-2">
+                #{patient.queueNumber} - {patient.name}
+              </div>
+            ))
+          )}
+        </div>
+        <div>
+          <h1>Done</h1>
+
+          {queue.done.length === 0 ? (
+            <p>No done patients</p>
+          ) : (
+            queue.done?.map((patient: any) => (
+              <div key={patient.id} className="p-2">
+                #{patient.queueNumber} - {patient.name}
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </>
   );

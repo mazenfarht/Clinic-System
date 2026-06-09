@@ -20,6 +20,8 @@ export default function Login() {
       setError("");
 
       const data = await login(userName, password);
+      console.log(data);
+
       localStorage.setItem("clinic_token", data.token);
       notifySuccess("Logged in successfully 🎉");
 
