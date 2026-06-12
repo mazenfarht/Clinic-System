@@ -5,7 +5,9 @@ import { useEffect, useMemo, useState } from "react";
 import Loading from "./loading";
 
 export default function Display() {
-  const { queue, loading } = useQueue();
+  const today = new Date().toISOString().split("T")[0];
+
+  const { queue, loading } = useQueue(today);
   const [now, setNow] = useState(new Date());
 
   const fullQueue = useMemo(() => {
@@ -13,6 +15,7 @@ export default function Display() {
       ...(queue?.scheduled || []),
       ...(queue?.waiting || []),
       ...(queue?.done || []),
+      ...(queue?.currentPatient ? [queue.currentPatient] : []),
     ].sort((a, b) => a.queueNumber - b.queueNumber);
   }, [queue]);
   useEffect(() => {
