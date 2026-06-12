@@ -222,6 +222,23 @@ export function removePatient(id: string): boolean {
  */
 export function getQueueSnapshot() {
   const sorted = getSortedQueue();
+
+  // 🔥 AUTO PROMOTION LOGIC
+  if (!store.currentPatient) {
+    const waiting = sorted
+      .filter((p) => p.status === "waiting")
+      .sort((a, b) => a.queueNumber - b.queueNumber);
+
+    if (waiting.length > 0) {
+      const next = waiting[0];
+
+      const idx = store.patients.findIndex((p) => p.id === next.id);
+
+      store.patients[idx].status = "current";
+      store.currentPatient = store.patients[idx];
+    }
+  }
+
   return {
     currentPatient: store.currentPatient,
     scheduled: sorted.filter((p) => p.status === "scheduled"),
