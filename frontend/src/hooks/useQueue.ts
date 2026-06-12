@@ -1,8 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { getQueue } from "../services/queue";
 
 export function useQueue() {
-  const [queue, setQueue] = useState<any>(null);
+  const [queue, setQueue] = useState<any>({
+    currentPatient: null,
+    scheduled: [],
+    waiting: [],
+    done: [],
+  });
+
   const [loading, setLoading] = useState(true);
 
   const isFirstLoad = useRef(true);
@@ -12,7 +18,14 @@ export function useQueue() {
       if (isFirstLoad.current) setLoading(true);
 
       const data = await getQueue();
-      setQueue(data);
+      // console.log(data);
+
+      setQueue({
+        currentPatient: data?.currentPatient || null,
+        scheduled: data?.scheduled || [],
+        waiting: data?.waiting || [],
+        done: data?.done || [],
+      });
     } catch (err) {
       console.log("Queue error:", err);
     } finally {
@@ -21,10 +34,18 @@ export function useQueue() {
     }
   };
 
+  const fullQueue = useMemo(() => {
+    return [
+      ...queue.scheduled,
+      ...(queue.currentPatient ? [queue.currentPatient] : []),
+      ...queue.waiting,
+      ...queue.done,
+    ].sort((a, b) => a.queueNumber - b.queueNumber);
+  }, [queue]);
+
   useEffect(() => {
     fetchQueue();
 
-    // optional: auto refresh every 10 sec
     const interval = setInterval(() => {
       fetchQueue();
     }, 10000);
@@ -36,5 +57,6 @@ export function useQueue() {
     queue,
     loading,
     refetch: fetchQueue,
+    fullQueue,
   };
 }

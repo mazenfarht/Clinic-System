@@ -3,7 +3,7 @@ import { api } from "../lib/axios";
 export const getQueue = async () => {
   try {
     const res = await api.get("/queue");
-    console.log("API RESPONSE:", res.data);
+    // console.log("API RESPONSE:", res.data);
     return res.data.data;
   } catch (err) {
     console.log("API ERROR:", err);
@@ -19,7 +19,7 @@ export const bookPatient = async (data: {
   try {
     const res = await api.post("/book", data);
 
-    console.log("API RESPONSE:", res.data);
+    // console.log("API RESPONSE:", res.data);
 
     return res.data.data;
   } catch (error: any) {

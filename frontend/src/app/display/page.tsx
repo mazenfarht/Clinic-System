@@ -1,13 +1,20 @@
 "use client";
 
 import { useQueue } from "@/src/hooks/useQueue";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loading from "./loading";
 
 export default function Display() {
   const { queue, loading } = useQueue();
   const [now, setNow] = useState(new Date());
 
+  const fullQueue = useMemo(() => {
+    return [
+      ...(queue?.scheduled || []),
+      ...(queue?.waiting || []),
+      ...(queue?.done || []),
+    ].sort((a, b) => a.queueNumber - b.queueNumber);
+  }, [queue]);
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(new Date());
@@ -27,12 +34,6 @@ export default function Display() {
   });
   if (loading) return <Loading />;
   if (!queue) return <div className="p-6">No data available</div>;
-
-  const fullQueue = [
-    ...(queue.scheduled || []),
-    ...(queue.waiting || []),
-    ...(queue.done || []),
-  ].sort((a, b) => a.queueNumber - b.queueNumber);
 
   return (
     <div className="min-h-screen bg-[#F8FAFB] p-6">
