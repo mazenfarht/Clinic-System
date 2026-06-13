@@ -10,8 +10,7 @@ type DateContextType = {
 const DateContext = createContext<DateContextType | null>(null);
 
 export function DateProvider({ children }: { children: React.ReactNode }) {
-  const today = new Date().toISOString().split("T")[0];
-
+  const today = new Date().toLocaleDateString("en-CA");
   const [date, setDate] = useState(today);
 
   return (

@@ -6,3 +6,8 @@ export const checkInPatient = async (id: string) => {
 export const nextPatient = async () => {
   return await api.post(`/next`);
 };
+
+export async function getAllPatients() {
+  const res = await api.get("/patient");
+  return res.data; // 👈 مهم جدًا
+}

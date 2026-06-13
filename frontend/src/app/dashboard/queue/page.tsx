@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useQueue } from "@/src/hooks/useQueue";
 import { nextPatient, checkInPatient } from "@/src/services/queue";
 import { useDate } from "@/src/context/DateContext";
@@ -8,6 +7,7 @@ import { useDate } from "@/src/context/DateContext";
 export default function Queue() {
   const { date, setDate } = useDate();
   const { queue, fullQueue, refetch } = useQueue(date);
+  const totalAllPatients = fullQueue.length;
 
   if (!queue) return <p className="p-6 text-[#6B7A92]">No data</p>;
 
@@ -16,15 +16,27 @@ export default function Queue() {
       {/* NOW SERVING CARD */}
       <div className="relative bg-[#EBF3FF] border-l-4 border-[#1A6BCC] rounded-xl p-6 shadow-sm">
         {/* DATE - TOP RIGHT */}
-        <div className="absolute top-4 right-4 flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-[#E2E8EF] shadow-sm">
-          <span className="text-xs text-[#6B7A92]">Date</span>
+        <div className="absolute top-4 right-4 flex flex-col items-end gap-2">
+          {/* DATE INPUT */}
+          <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-[#E2E8EF] shadow-sm">
+            <span className="text-xs text-[#6B7A92]">Date</span>
 
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="text-sm text-[#1A2B45] bg-transparent outline-none"
-          />
+            <input
+              type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              className="text-sm text-[#1A2B45] bg-transparent outline-none"
+            />
+          </div>
+
+          {/* TOTAL PATIENTS MINI CARD */}
+          <div className="bg-white text-black px-3 py-1.5 rounded-lg shadow-sm text-center min-w-[120px]">
+            <p className="text-[10px] font-bold uppercase tracking-wide opacity-80">
+              Total Patients
+            </p>
+
+            <p className="text-2xl font-bold">{totalAllPatients}</p>
+          </div>
         </div>
 
         {/* MAIN CONTENT */}

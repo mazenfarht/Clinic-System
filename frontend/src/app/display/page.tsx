@@ -5,9 +5,9 @@ import { useEffect, useMemo, useState } from "react";
 import Loading from "./loading";
 
 export default function Display() {
-  const today = new Date().toISOString().split("T")[0];
-
+  const today = new Date().toLocaleDateString("en-CA");
   const { queue, loading } = useQueue(today);
+
   const [now, setNow] = useState(new Date());
 
   const fullQueue = useMemo(() => {
@@ -20,6 +20,8 @@ export default function Display() {
   }, [queue]);
   useEffect(() => {
     const interval = setInterval(() => {
+      // console.log("DATE:", today);
+      // console.log("QUEUE:", queue);
       setNow(new Date());
     }, 1000);
     return () => clearInterval(interval);
