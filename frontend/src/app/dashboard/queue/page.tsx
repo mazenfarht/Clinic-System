@@ -3,14 +3,12 @@
 import { useState } from "react";
 import { useQueue } from "@/src/hooks/useQueue";
 import { nextPatient, checkInPatient } from "@/src/services/queue";
+import { useDate } from "@/src/context/DateContext";
 
 export default function Queue() {
-  const today = new Date().toISOString().split("T")[0];
-  const [date, setDate] = useState(today);
+  const { date, setDate } = useDate();
+  const { queue, fullQueue, refetch } = useQueue(date);
 
-  const { queue, loading, fullQueue, refetch } = useQueue(date);
-
-  if (loading) return <p className="p-6 text-[#6B7A92]">Loading...</p>;
   if (!queue) return <p className="p-6 text-[#6B7A92]">No data</p>;
 
   return (

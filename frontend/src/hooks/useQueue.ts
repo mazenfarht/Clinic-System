@@ -1,8 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { getQueue } from "../services/queue";
+import { Patient } from "../types/patient";
 
 export function useQueue(date: string) {
-  const [queue, setQueue] = useState({
+  const [queue, setQueue] = useState<{
+    currentPatient: Patient | null;
+    waiting: Patient[];
+    done: Patient[];
+  }>({
     currentPatient: null,
     waiting: [],
     done: [],
@@ -19,6 +24,7 @@ export function useQueue(date: string) {
         if (showLoading) setLoading(true);
 
         const data = await getQueue(date);
+        // console.log(data);
 
         setQueue({
           currentPatient: data?.currentPatient || null,
