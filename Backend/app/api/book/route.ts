@@ -47,6 +47,22 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  if (typeof appointmentDate === "string") {
+    const selectedDate = new Date(appointmentDate);
+    const today = new Date();
+
+    selectedDate.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate < today) {
+      return errorResponse(
+        "Cannot book an appointment for a past date.",
+        400,
+        "PAST_DATE_NOT_ALLOWED"
+      );
+    }
+  }
+
   const patient = bookPatient(name, appointmentDate as string | undefined);
 
   return successResponse(
