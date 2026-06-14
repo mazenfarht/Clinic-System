@@ -7,7 +7,6 @@ import { useDate } from "@/src/context/DateContext";
 export default function Queue() {
   const { date, setDate } = useDate();
   const { queue, fullQueue, refetch } = useQueue(date);
-  const totalAllPatients = fullQueue.length;
 
   if (!queue) return <p className="p-6 text-[#6B7A92]">No data</p>;
 
@@ -27,15 +26,6 @@ export default function Queue() {
               onChange={(e) => setDate(e.target.value)}
               className="text-sm text-[#1A2B45] bg-transparent outline-none"
             />
-          </div>
-
-          {/* TOTAL PATIENTS MINI CARD */}
-          <div className="bg-white text-black px-3 py-1.5 rounded-lg shadow-sm text-center min-w-[120px]">
-            <p className="text-[10px] font-bold uppercase tracking-wide opacity-80">
-              Total Patients
-            </p>
-
-            <p className="text-2xl font-bold">{totalAllPatients}</p>
           </div>
         </div>
 

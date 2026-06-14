@@ -50,13 +50,16 @@ export default function AnalyticsChart({ chartData }: any) {
           <BarChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-            <YAxis />
+
+            <YAxis allowDecimals={false} domain={[0, "dataMax"]} />
+
             <Tooltip
               contentStyle={{
                 borderRadius: "10px",
                 border: "1px solid #eee",
               }}
             />
+
             <Bar dataKey="count" fill="#1A6BCC" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
@@ -91,8 +94,8 @@ export default function AnalyticsChart({ chartData }: any) {
             </ResponsiveContainer>
 
             {/* =========================
-      CENTER TOTAL PATIENTS
-  ========================= */}
+                CENTER TOTAL PATIENTS
+             ========================= */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
               <p className="text-xs text-gray-500">Total Patients</p>
 

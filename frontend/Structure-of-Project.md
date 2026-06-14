@@ -4,44 +4,45 @@ src/
 │ ├── page.tsx
 │ ├── book/
 │ │ └── page.tsx
-│ ├── queue/
-│ │ └── page.tsx
 │ ├── display/
 │ │ └── page.tsx
 │ ├── login/
 │ │ └── page.tsx
-│ └── dashboard/
+│ │── dashboard/
+├ │ └── queue/
+│ │ └── page.tsx
+├ │ └── analytics/
+│ │ └── page.tsx
 │ ├── page.tsx
-│ ├── loading.tsx
 │ └── layout.tsx
 │
 ├── components/
 │ ├── Sidebar.tsx
-│ ├── QueueCard.tsx
 │ ├── PatientForm.tsx
-│ ├── WaitingList.tsx
-│ ├── StatsCards.tsx
-│ ├── DoctorHeader.tsx
-│ ├── DeletePatientModal.tsx
-│ └── ResetQueueModal.tsx
+│ └── AnalyticsChart.tsx
 │
 ├── hooks/
 │ ├── useQueue.ts
 │ ├── useAuth.ts
-│ └── usePolling.ts
+├── context/
+│ ├── DateContext.tsx
+│
 │
 ├── services/
 │ ├── auth.ts
 │ ├── queue.ts
 │ └── patient.ts
+│ ├── book.ts
+│ └── slots.ts
 │
 ├── types/
 │ ├── patient.ts
 │ ├── queue.ts
 │ └── auth.ts
+│ └── slots.ts
 │
 ├── lib/
 │ ├── axios.ts
-│ └── utils.ts
+│ └── notify.ts
 │
 └── middleware.ts
