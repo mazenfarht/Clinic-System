@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X, Calendar, LogIn, Stethoscope } from "lucide-react";
 import { NAV_LINKS } from "./constants";
+import Link from "next/link";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,20 +37,20 @@ export default function Navbar() {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
+            <Link
               href="/login"
               className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[#E2E8EF] text-[#1A2B45] text-sm font-medium hover:border-[#1A6BCC] hover:text-[#1A6BCC] transition-all"
             >
               <LogIn className="w-4 h-4" />
               دخول الدكتور
-            </a>
-            <a
+            </Link>
+            <Link
               href="/book"
               className="flex items-center gap-2 px-5 py-2 rounded-xl bg-[#1A6BCC] text-white text-sm font-semibold hover:bg-[#155bb5] transition-all shadow-md shadow-[#1A6BCC]/25"
             >
               <Calendar className="w-4 h-4" />
               حجز موعد
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Hamburger Button */}

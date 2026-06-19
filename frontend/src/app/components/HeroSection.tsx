@@ -1,5 +1,6 @@
 import { Calendar, Shield, Clock, Star, Check, ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 const MINI_FEATURES = [
   {
     icon: <Shield className="w-5 h-5 text-[#1A6BCC]" />,
@@ -35,19 +36,19 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mb-10">
-              <a
+              <Link
                 href="/book"
                 className="flex items-center gap-2 px-7 py-3.5 rounded-2xl bg-[#1A6BCC] text-white font-bold text-base hover:bg-[#155bb5] transition-all shadow-lg shadow-[#1A6BCC]/30 hover:shadow-xl hover:-translate-y-0.5"
               >
                 <Calendar className="w-5 h-5" /> احجز موعدك الآن
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="#doctor"
                 className="flex items-center gap-2 px-7 py-3.5 rounded-2xl border-2 border-[#E2E8EF] text-[#1A2B45] font-bold text-base hover:border-[#1A6BCC] hover:text-[#1A6BCC] transition-all"
               >
                 اكتشف خدماتنا <ArrowLeft className="w-4 h-4 rotate-180" />
-              </a>
+              </Link>
             </div>
 
             {/* Mini Features */}

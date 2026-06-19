@@ -1,5 +1,6 @@
 import { Calendar } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const DOCTOR_STATS = [
   { label: "التخصص", value: "جراحة القلب" },
@@ -78,12 +79,12 @@ export default function DoctorSection() {
             </div>
 
             {/* CTA */}
-            <a
+            <Link
               href="/book"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#1A6BCC] text-white font-semibold hover:bg-[#155bb5] transition-all shadow-md shadow-[#1A6BCC]/30"
             >
               <Calendar className="w-5 h-5" /> احجز مع الدكتور
-            </a>
+            </Link>
           </div>
         </div>
       </div>
