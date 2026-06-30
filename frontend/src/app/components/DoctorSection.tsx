@@ -29,7 +29,7 @@ export default function DoctorSection() {
             <div className="relative">
               <div className="w-72 h-80 rounded-3xl bg-gradient-to-br from-[#1A6BCC]/15 to-[#1A6BCC]/5 border-4 border-white shadow-2xl flex items-center justify-center">
                 <Image
-                  src="/doctor1.jpg"
+                  src="/doctor.png"
                   alt="Doctor"
                   fill
                   className="object-cover"

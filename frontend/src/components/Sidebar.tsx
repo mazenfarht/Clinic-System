@@ -6,6 +6,7 @@ import {
   BarChart3,
   Settings,
   LogOut,
+  Stethoscope,
 } from "lucide-react";
 
 export default function Sidebar() {
@@ -13,7 +14,15 @@ export default function Sidebar() {
     <aside className="w-64 min-h-screen bg-slate-900 text-white flex flex-col">
       {/* Logo */}
       <div className="p-6 border-b border-slate-800">
-        <h1 className="text-2xl font-bold">ClinicQ</h1>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded-xl bg-[#1A6BCC] flex items-center justify-center">
+            <Stethoscope className="w-5 h-5 text-white" />
+          </div>
+          <span className="text-xl font-extrabold text-white tracking-tight">
+            Clinic<span className="text-[#1A6BCC]">Q</span>
+          </span>
+        </Link>{" "}
       </div>
 
       {/* User */}

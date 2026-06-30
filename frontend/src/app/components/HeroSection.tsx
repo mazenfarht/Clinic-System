@@ -74,7 +74,7 @@ export default function HeroSection() {
 
               <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl aspect-[4/5]">
                 <Image
-                  src="/doctor1.jpg"
+                  src="/doctor.png"
                   alt="Doctor"
                   fill
                   className="object-cover"
