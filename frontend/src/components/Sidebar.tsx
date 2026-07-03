@@ -8,8 +8,23 @@ import {
   LogOut,
   Stethoscope,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar() {
+  // fuction of signout
+  const router = useRouter();
+  const handleLogout = () => {
+    // Remove token from localStorage
+    localStorage.removeItem("clinic_token");
+
+    // Remove cookie
+    document.cookie =
+      "clinic_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+
+    // Redirect to login
+    router.replace("/login");
+  };
+
   return (
     <aside className="w-64 min-h-screen bg-slate-900 text-white flex flex-col">
       {/* Logo */}
@@ -77,12 +92,15 @@ export default function Sidebar() {
       </nav>
 
       {/* Logout */}
-      {/* <div className="p-4 border-t border-slate-800">
-        <button className="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-slate-800">
+      <div className="p-4 border-t border-slate-800">
+        <button
+          className="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-slate-800"
+          onClick={handleLogout}
+        >
           <LogOut size={20} />
           Sign Out
         </button>
-      </div> */}
+      </div>
     </aside>
   );
 }

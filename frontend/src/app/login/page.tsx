@@ -2,6 +2,8 @@
 
 import { notifyError, notifySuccess } from "@/src/lib/notify";
 import { login } from "@/src/services/auth";
+import { Stethoscope } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -38,9 +40,17 @@ export default function Login() {
   return (
     <div className="min-h-screen flex bg-[#F8FAFB]">
       {/* LEFT BRAND PANEL */}
-      <div className="hidden lg:flex w-[55%] bg-gradient-to-br from-[#1A2B45] via-[#1A6BCC] to-[#0EB5A2] text-white flex-col justify-center items-center p-12 relative overflow-hidden">
+      <div className="hidden lg:flex w-[55%]  bg-gradient-to-br from-[#1A2B45] via-[#1A6BCC] to-[#0EB5A2] text-white flex-col justify-center items-center p-12 relative overflow-hidden">
         <div className="max-w-md z-10">
-          <h1 className="text-5xl font-bold mb-3">ClinicQ</h1>
+          {/* Logo */}
+          <a className="flex items-center gap-2 mb-3">
+            <div className="w-15 h-15 rounded-xl bg-[#1A6BCC] flex items-center justify-center">
+              <Stethoscope className="w-10 h-10 text-white" />
+            </div>
+            <span className="text-5xl font-bold  text-white tracking-tight">
+              Clinic<span className="text-[#BEE3FF]">Q</span>
+            </span>
+          </a>
 
           <h2 className="text-2xl font-semibold mb-4 text-[#EBF3FF]">
             Clinic Queue System
