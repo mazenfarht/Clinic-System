@@ -59,14 +59,14 @@ export default function PatientForm() {
             <Form className="space-y-5">
               {/* NAME */}
               <div>
-                <label className="text-xs text-[#6B7A92] font-medium">
+                <label className="text-sm text-[#6B7A92] font-medium">
                   Full Name
                 </label>
 
                 <Field
                   name="name"
                   placeholder="Enter your name"
-                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white"
+                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white placeholder:text-gray-300 "
                 />
 
                 <ErrorMessage
@@ -78,14 +78,14 @@ export default function PatientForm() {
 
               {/* DATE */}
               <div>
-                <label className="text-xs text-[#6B7A92] font-medium">
-                  Appointment Date (optional)
+                <label className="text-sm text-[#6B7A92] font-medium">
+                  Appointment Date
                 </label>
 
                 <Field
                   name="date"
                   type="date"
-                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white"
+                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white text-gray-300 "
                   onChange={(e: any) => {
                     setFieldValue("date", e.target.value);
                     fetchSlots(e.target.value);
