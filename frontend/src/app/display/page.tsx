@@ -12,7 +12,6 @@ export default function Display() {
 
   const fullQueue = useMemo(() => {
     return [
-      ...(queue?.scheduled || []),
       ...(queue?.waiting || []),
       ...(queue?.done || []),
       ...(queue?.currentPatient ? [queue.currentPatient] : []),

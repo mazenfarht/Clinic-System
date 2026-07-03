@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useQueue } from "./useQueue";
 import { getAllPatients } from "../services/patient";
+import { Patient } from "../types/patient";
 
 export function useAnalytics(date: string) {
   const { fullQueue } = useQueue(date);

@@ -88,7 +88,11 @@ export default function AnalyticsChart({ chartData }: any) {
                 </Pie>
 
                 <Tooltip
-                  formatter={(value: number) => `${value.toFixed(1)}%`}
+                  formatter={(value) =>
+                    typeof value === "number"
+                      ? `${value.toFixed(1)}%`
+                      : String(value)
+                  }
                 />
               </PieChart>
             </ResponsiveContainer>
