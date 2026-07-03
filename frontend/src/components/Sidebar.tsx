@@ -22,7 +22,7 @@ export default function Sidebar() {
           <span className="text-xl font-extrabold text-white tracking-tight">
             Clinic<span className="text-[#1A6BCC]">Q</span>
           </span>
-        </Link>{" "}
+        </Link>
       </div>
 
       {/* User */}
@@ -56,16 +56,6 @@ export default function Sidebar() {
 
           <li>
             <Link
-              href="/dashboard/appointments"
-              className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
-            >
-              <Calendar size={20} />
-              Appointments
-            </Link>
-          </li>
-
-          <li>
-            <Link
               href="/dashboard/analytics"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
             >
@@ -74,7 +64,7 @@ export default function Sidebar() {
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link
               href="/dashboard/settings"
               className="flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800"
@@ -82,17 +72,17 @@ export default function Sidebar() {
               <Settings size={20} />
               Settings
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
 
       {/* Logout */}
-      <div className="p-4 border-t border-slate-800">
+      {/* <div className="p-4 border-t border-slate-800">
         <button className="flex items-center gap-3 w-full p-3 rounded-lg hover:bg-slate-800">
           <LogOut size={20} />
           Sign Out
         </button>
-      </div>
+      </div> */}
     </aside>
   );
 }

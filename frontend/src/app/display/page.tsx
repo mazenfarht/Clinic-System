@@ -3,6 +3,8 @@
 import { useQueue } from "@/src/hooks/useQueue";
 import { useEffect, useMemo, useState } from "react";
 import Loading from "./loading";
+import Link from "next/link";
+import { Stethoscope } from "lucide-react";
 
 export default function Display() {
   const today = new Date().toLocaleDateString("en-CA");
@@ -43,7 +45,15 @@ export default function Display() {
     <div className="min-h-screen bg-[#F8FAFB] p-6">
       {/* HEADER */}
       <div className="bg-[#1A2B45] text-white p-4 rounded-xl mb-6 flex justify-between items-center">
-        <h1 className="text-xl font-bold">Clinic Queue</h1>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <div className="w-9 h-9 rounded-xl bg-[#1A6BCC] flex items-center justify-center">
+            <Stethoscope className="w-5 h-5 text-white" />
+          </div>
+          <span className="text-xl font-extrabold text-white tracking-tight">
+            Clinic<span className="text-[#1A6BCC]">Q</span>
+          </span>
+        </Link>
 
         <div className="text-right">
           <p className="text-sm text-[#8DA0B8]">{date}</p>
