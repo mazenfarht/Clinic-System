@@ -22,7 +22,7 @@ export default function Sidebar() {
       "clinic_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
 
     // Redirect to login
-    router.replace("/login");
+    router.replace("/admin/login");
   };
 
   return (

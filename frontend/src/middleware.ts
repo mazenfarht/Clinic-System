@@ -6,11 +6,9 @@ export function middleware(request: NextRequest) {
   const isDashboard = pathname.startsWith("/dashboard");
   // const isLogin = pathname.startsWith("/login");
   if (isDashboard && !token) {
-    return NextResponse.redirect(new URL("/login", request.url));
+    return NextResponse.redirect(new URL("/admin/login", request.url));
   }
-  // if (isLogin && token) {
-  //   return NextResponse.redirect(new URL("/dashboard", request.url));
-  // }
+
   return NextResponse.next();
 }
 export const config = {
