@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import { bookPatient } from "../services/queue";
+import { bookPatient } from "../../services/queue";
 import { notifyError, notifySuccess } from "@/src/lib/notify";
-import { getSlots } from "../services/slot";
+import { getSlots } from "../../services/slot";
 
 export default function PatientForm() {
   const router = useRouter();
@@ -55,7 +55,7 @@ export default function PatientForm() {
             }
           }}
         >
-          {({ setFieldValue }) => (
+          {({ setFieldValue, isSubmitting }) => (
             <Form className="space-y-5">
               {/* NAME */}
               <div>
@@ -66,7 +66,7 @@ export default function PatientForm() {
                 <Field
                   name="name"
                   placeholder="Enter your name"
-                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white placeholder:text-gray-300 "
+                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white text-black placeholder:text-gray-400 "
                 />
 
                 <ErrorMessage
@@ -85,7 +85,7 @@ export default function PatientForm() {
                 <Field
                   name="date"
                   type="date"
-                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white text-gray-300 "
+                  className="mt-2 w-full h-12 px-4 rounded-xl border border-[#E2E8EF] bg-white text-gray-400  "
                   onChange={(e: any) => {
                     setFieldValue("date", e.target.value);
                     fetchSlots(e.target.value);
@@ -102,9 +102,15 @@ export default function PatientForm() {
               {/* BUTTON */}
               <button
                 type="submit"
-                className="w-full h-12 rounded-xl bg-[#1A6BCC] text-white font-medium"
+                disabled={isSubmitting}
+                className={`w-full h-12 rounded-xl text-white font-medium transition
+    ${
+      isSubmitting
+        ? "bg-[#7aa8e5] cursor-not-allowed"
+        : "bg-[#1A6BCC] hover:bg-[#1558a8]"
+    }`}
               >
-                Book Appointment →
+                {isSubmitting ? "Booking..." : "Book Appointment →"}
               </button>
             </Form>
           )}

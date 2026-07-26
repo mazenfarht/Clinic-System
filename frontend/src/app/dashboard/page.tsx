@@ -1,6 +1,6 @@
 "use client";
 
-import AnalyticsBerDay from "@/src/components/AnalyticsBerDay";
+import AnalyticsBerDay from "@/src/app/components/Analytics/AnalyticsBerDay";
 import Analytics from "./analytics/page";
 import Queue from "./queue/page";
 

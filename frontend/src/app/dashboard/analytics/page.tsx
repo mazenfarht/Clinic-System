@@ -1,6 +1,6 @@
 "use client";
 
-import AnalyticsChart from "@/src/components/AnalyticsChart";
+import AnalyticsChart from "@/src/app/components/Analytics/AnalyticsChart";
 import { useDate } from "@/src/context/DateContext";
 import { useAnalytics } from "@/src/hooks/useAnalytics";
 
@@ -13,7 +13,7 @@ export default function Analytics() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-6">Analytics</h1>
+      <h1 className="text-2xl font-bold mb-6 text-black">Analytics</h1>
 
       <AnalyticsChart chartData={chartData} />
     </div>

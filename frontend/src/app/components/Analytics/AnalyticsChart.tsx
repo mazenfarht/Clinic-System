@@ -13,7 +13,7 @@ import {
   CartesianGrid,
 } from "recharts";
 import { useMemo } from "react";
-import { useQueue } from "../hooks/useQueue";
+import { useQueue } from "../../../hooks/useQueue";
 
 export default function AnalyticsChart({ chartData }: any) {
   // =========================
@@ -44,7 +44,9 @@ export default function AnalyticsChart({ chartData }: any) {
           BAR CHART (LEFT - BIG)
       ========================= */}
       <div className="bg-white p-5 rounded-xl border lg:col-span-2">
-        <h2 className="text-lg font-semibold mb-4">Patients per Day</h2>
+        <h2 className="text-lg font-semibold mb-4 text-black">
+          Patients per Day
+        </h2>
 
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={chartData}>

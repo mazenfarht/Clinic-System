@@ -1,11 +1,11 @@
-import AboutSection from "./components/AboutSection";
-import AchievementsSection from "./components/AchievementsSection";
-import ContactSection from "./components/ContactSection";
-import DoctorSection from "./components/DoctorSection";
-import Footer from "./components/Footer";
-import HeroSection from "./components/HeroSection";
-import Navbar from "./components/Navbar";
-import TestimonialsSection from "./components/TestimonialsSection";
+import AboutSection from "./components/Landing-Page/AboutSection";
+import AchievementsSection from "./components/Landing-Page/AchievementsSection";
+import ContactSection from "./components/Landing-Page/ContactSection";
+import DoctorSection from "./components/Landing-Page/DoctorSection";
+import Footer from "./components/Landing-Page/Footer";
+import HeroSection from "./components/Landing-Page/HeroSection";
+import Navbar from "./components/Landing-Page/Navbar";
+import TestimonialsSection from "./components/Landing-Page/TestimonialsSection";
 export default function Home() {
   return (
     <>
