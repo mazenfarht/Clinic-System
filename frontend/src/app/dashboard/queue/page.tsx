@@ -11,7 +11,7 @@ export default function Queue() {
   if (!queue) return <p className="p-6 text-[#6B7A92]">No data</p>;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFB] p-6 space-y-6">
+    <div className=" bg-[#F8FAFB] p-6 space-y-6">
       {/* NOW SERVING CARD */}
       <div className="relative bg-[#EBF3FF] border-l-4 border-[#1A6BCC] rounded-xl p-6 shadow-sm">
         {/* DATE - TOP RIGHT */}
